@@ -1,0 +1,4 @@
+tenserflow
+Flask
+gunicorn
+pillow
