@@ -34,6 +34,8 @@ f = open('model.txt', 'r')
 # converting list into array of strings
 classNames = f.read().split('\n')
 f.close()
+
+
 # Define API endpoint
 @app.route('/predict', methods=['POST','GET'])
 def predict():
@@ -41,6 +43,7 @@ def predict():
     image_data = request.json.get('image')
     image_bytes = base64.b64decode(image_data)
     image = Image.open(io.BytesIO(image_bytes)).convert('RGB')
+    print(image)
     image = np.array(image)
     result = hands.process(image)
     x, y, c = image.shape
@@ -70,4 +73,4 @@ def predict():
 
 if __name__ == '__main__':
     # Start Flask app
-    app.run(host='0.0.0.0', port=5000)
+    app.run()

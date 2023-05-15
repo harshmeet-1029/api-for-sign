@@ -1,4 +1,7 @@
-tenserflow
+tensorflow
 Flask
 gunicorn
 pillow
+mediapipe
+pybase64
+pypi-json
