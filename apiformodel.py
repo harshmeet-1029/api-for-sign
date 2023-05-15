@@ -38,8 +38,9 @@ f.close()
 @app.route('/predict', methods=['POST','GET'])
 def predict():
     # Get image from request data
-    image_data = request.get_data()
-    image = Image.open(io.BytesIO(image_data)).convert('RGB')
+    image_data = request.json.get('image')
+    image_bytes = base64.b64decode(image_data)
+    image = Image.open(io.BytesIO(image_bytes)).convert('RGB')
     image = np.array(image)
     result = hands.process(image)
     x, y, c = image.shape
